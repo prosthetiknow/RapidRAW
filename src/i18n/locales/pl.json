@@ -1859,6 +1859,7 @@
       "fontDesc": "Zmień czcionkę aplikacji.",
       "nativeTitlebar": "Natywny pasek tytułu",
       "nativeTitlebarDesc": "Użyj domyślnego paska tytułu okna twojego systemu zamiast niestandardowego w RapidRAW.",
+      "nativeTitlebarRestartRequired": "Zmiany paska tytułu wymagają ponownego uruchomienia aplikacji, aby odniosły skutek.",
       "neutralGreyCanvas": "Neutralne szare płótno",
       "neutralGreyCanvasDesc": "Użyj neutralnego, szarego płótna do dokładniejszej korekcji kolorów i ekspozycji bez zmiany motywu aplikacji.",
       "poppins": "Poppins",

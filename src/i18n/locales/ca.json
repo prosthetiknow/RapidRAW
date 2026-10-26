@@ -1789,6 +1789,7 @@
       "fontDesc": "Canvia el tipus de lletra de l'aplicació.",
       "nativeTitlebar": "Barra de títol nativa",
       "nativeTitlebarDesc": "Utilitzar la barra de títol de la finestra predeterminada del sistema en lloc de la personalitzada de RapidRAW.",
+      "nativeTitlebarRestartRequired": "Els canvis a la barra de títol requereixen reiniciar l'aplicació per fer efecte.",
       "neutralGreyCanvas": "Llenç gris neutre",
       "neutralGreyCanvasDesc": "Utilitzeu un llenç gris neutre per a una gradació de color i exposició més precisa sense canviar el tema de l'aplicació.",
       "poppins": "Poppins",

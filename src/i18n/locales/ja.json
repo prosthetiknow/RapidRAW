@@ -1778,6 +1778,7 @@
       "fontDesc": "アプリケーションのフォントを変更します。",
       "nativeTitlebar": "OS標準のタイトルバー",
       "nativeTitlebarDesc": "RapidRAWカスタムのもの代わりに、システムのデフォルトのウィンドウタイトルバーを使用します。",
+      "nativeTitlebarRestartRequired": "タイトルバーの変更を有効にするには、アプリを再起動する必要があります。",
       "neutralGreyCanvas": "ニュートラルグレーのキャンバス",
       "neutralGreyCanvasDesc": "アプリのテーマを変更せずに、より正確な色と露出のグレーディングを行うために、ニュートラルグレーのキャンバスを使用します。",
       "poppins": "Poppins",

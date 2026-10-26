@@ -1778,6 +1778,7 @@
       "fontDesc": "更改应用程序字体。",
       "nativeTitlebar": "原生标题栏",
       "nativeTitlebarDesc": "使用系统默认的窗口标题栏，而非 RapidRAW 的自定义标题栏。",
+      "nativeTitlebarRestartRequired": "标题栏的更改需要重启应用程序才能生效。",
       "neutralGreyCanvas": "中性灰画布",
       "neutralGreyCanvasDesc": "使用中性灰画布，以便在不更改应用主题的情况下进行更准确的色彩和曝光分级。",
       "poppins": "Poppins",

@@ -1760,6 +1760,7 @@
       "fontDesc": "Het toepassingslettertype wijzigen.",
       "nativeTitlebar": "Systeemeigen titelbalk",
       "nativeTitlebarDesc": "Gebruik de standaard venstertitelbalk van uw systeem in plaats van de aangepaste titelbalk van RapidRAW.",
+      "nativeTitlebarRestartRequired": "Wijzigingen in de titelbalk vereisen een herstart van de toepassing om effect te hebben.",
       "neutralGreyCanvas": "Neutraal grijs canvas",
       "neutralGreyCanvasDesc": "Gebruik een neutraal grijs canvas voor nauwkeurigere kleur- en belichtingsgradering zonder het thema van de app te wijzigen.",
       "poppins": "Poppins",

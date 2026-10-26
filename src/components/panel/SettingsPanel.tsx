@@ -31,6 +31,7 @@ import clsx from 'clsx';
 import { ClerkProvider, SignIn, useClerk } from '@clerk/react';
 import { useShallow } from 'zustand/react/shallow';
 import { useCloudStore } from '../../store/useCloudStore';
+import { useSettingsStore } from '../../store/useSettingsStore';
 import Button from '../ui/Button';
 import ConfirmModal from '../modals/ConfirmModal';
 import Dropdown, { OptionItem } from '../ui/Dropdown';
@@ -79,6 +80,11 @@ interface SettingItemProps {
   children: any;
   description?: string;
   label: string;
+}
+
+interface RestartNoticeProps {
+  message: string;
+  onRelaunch(): void;
 }
 
 interface SettingsPanelProps {
@@ -225,6 +231,26 @@ const SettingItem = ({ children, description, label }: SettingItemProps) => (
     )}
   </div>
 );
+
+const RestartNotice = ({ message, onRelaunch }: RestartNoticeProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <Text
+        as="div"
+        color={TextColors.info}
+        className="p-3 bg-blue-900/10 border border-blue-500/50 rounded-lg flex items-center gap-3"
+      >
+        <Info size={18} />
+        <p>{message}</p>
+      </Text>
+      <div className="flex justify-end">
+        <Button onClick={onRelaunch}>{t('settings.processing.saveRelaunch')}</Button>
+      </div>
+    </>
+  );
+};
 
 interface AiProviderSwitchProps {
   selectedProvider: string;
@@ -556,6 +582,8 @@ export default function SettingsPanel({
     useAppleRaw9: appSettings?.useAppleRaw9 ?? false,
   });
   const [restartRequired, setRestartRequired] = useState(false);
+  const decorationsAtLaunch = useSettingsStore((state) => state.decorationsAtLaunch);
+  const titlebarRestartRequired = (appSettings?.decorations ?? false) !== decorationsAtLaunch;
   const [activeCategory, setActiveCategory] = useState('general');
   const [dpr, setDpr] = useState(() => (typeof window !== 'undefined' ? window.devicePixelRatio : 1));
 
@@ -1086,20 +1114,29 @@ export default function SettingsPanel({
                       </SettingItem>
 
                       {osPlatform === 'linux' && (
-                        <SettingItem
-                          label={t('settings.general.nativeTitlebar')}
-                          description={t('settings.general.nativeTitlebarDesc')}
-                        >
-                          <Switch
-                            checked={appSettings?.decorations ?? false}
-                            id="native-titlebar-toggle"
-                            label={t('settings.general.enableOsTitlebar')}
-                            onChange={(checked) => {
-                              onSettingsChange({ ...appSettings, decorations: checked });
-                              getCurrentWindow().setDecorations(checked).catch(console.error);
-                            }}
-                          />
-                        </SettingItem>
+                        <>
+                          <SettingItem
+                            label={t('settings.general.nativeTitlebar')}
+                            description={t('settings.general.nativeTitlebarDesc')}
+                          >
+                            <Switch
+                              checked={appSettings?.decorations ?? false}
+                              id="native-titlebar-toggle"
+                              label={t('settings.general.enableOsTitlebar')}
+                              onChange={(checked) => {
+                                onSettingsChange({ ...appSettings, decorations: checked });
+                                getCurrentWindow().setDecorations(checked).catch(console.error);
+                              }}
+                            />
+                          </SettingItem>
+
+                          {titlebarRestartRequired && (
+                            <RestartNotice
+                              message={t('settings.general.nativeTitlebarRestartRequired')}
+                              onRelaunch={relaunch}
+                            />
+                          )}
+                        </>
                       )}
                     </div>
                   </div>
@@ -2086,19 +2123,10 @@ export default function SettingsPanel({
                       </SettingItem>
 
                       {restartRequired && (
-                        <>
-                          <Text
-                            as="div"
-                            color={TextColors.info}
-                            className="p-3 bg-blue-900/10 border border-blue-500/50 rounded-lg flex items-center gap-3"
-                          >
-                            <Info size={18} />
-                            <p>{t('settings.processing.restartRequired')}</p>
-                          </Text>
-                          <div className="flex justify-end">
-                            <Button onClick={handleSaveAndRelaunch}>{t('settings.processing.saveRelaunch')}</Button>
-                          </div>
-                        </>
+                        <RestartNotice
+                          message={t('settings.processing.restartRequired')}
+                          onRelaunch={handleSaveAndRelaunch}
+                        />
                       )}
                     </div>
                   </div>

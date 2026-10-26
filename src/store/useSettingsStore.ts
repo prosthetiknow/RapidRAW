@@ -6,6 +6,7 @@ import { DEFAULT_THEME_ID } from '../utils/themes';
 
 interface SettingsState {
   appSettings: AppSettings | null;
+  decorationsAtLaunch: boolean;
   theme: string;
   supportedTypes: SupportedTypes | null;
   osPlatform: string;
@@ -13,6 +14,7 @@ interface SettingsState {
   // Actions
   initPlatform: () => void;
   setAppSettings: (settings: AppSettings | null) => void;
+  setDecorationsAtLaunch: (decorations: boolean) => void;
   setTheme: (theme: string) => void;
   setSupportedTypes: (types: SupportedTypes | null) => void;
   handleSettingsChange: (newSettings: AppSettings) => Promise<void>;
@@ -20,6 +22,7 @@ interface SettingsState {
 
 export const useSettingsStore = create<SettingsState>((set, get) => ({
   appSettings: null,
+  decorationsAtLaunch: false,
   theme: DEFAULT_THEME_ID,
   supportedTypes: null,
   osPlatform: '',
@@ -33,6 +36,8 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
   },
 
   setAppSettings: (settings) => set({ appSettings: settings }),
+
+  setDecorationsAtLaunch: (decorations) => set({ decorationsAtLaunch: decorations }),
 
   setTheme: (theme) => set({ theme }),
 

@@ -1790,6 +1790,7 @@
       "fontDesc": "Změňte písmo aplikace.",
       "nativeTitlebar": "Nativní záhlaví",
       "nativeTitlebarDesc": "Použijte výchozí záhlaví okna vašeho systému namísto vlastního okna RapidRAW.",
+      "nativeTitlebarRestartRequired": "Změny záhlaví vyžadují restart aplikace, aby se projevily.",
       "neutralGreyCanvas": "Neutrální šedé plátno",
       "neutralGreyCanvasDesc": "Použít neutrální šedé plátno pro přesnější hodnocení barev a expozice beze změny motivu aplikace.",
       "poppins": "Poppins",

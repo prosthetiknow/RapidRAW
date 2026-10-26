@@ -64,6 +64,7 @@ export const useAppInitialization = ({
     theme,
     osPlatform,
     setAppSettings,
+    setDecorationsAtLaunch,
     setTheme,
     setSupportedTypes,
     initPlatform,
@@ -74,6 +75,7 @@ export const useAppInitialization = ({
       theme: state.theme,
       osPlatform: state.osPlatform,
       setAppSettings: state.setAppSettings,
+      setDecorationsAtLaunch: state.setDecorationsAtLaunch,
       setTheme: state.setTheme,
       setSupportedTypes: state.setSupportedTypes,
       initPlatform: state.initPlatform,
@@ -174,6 +176,7 @@ export const useAppInitialization = ({
         settings.workspace = reconciledWorkspace;
 
         setAppSettings(settings);
+        setDecorationsAtLaunch(settings.decorations ?? false);
         i18n.changeLanguage(settings.language);
 
         if (settings?.sortCriteria) setSortCriteria(settings.sortCriteria);
@@ -290,6 +293,7 @@ export const useAppInitialization = ({
   }, [
     isAndroid,
     setAppSettings,
+    setDecorationsAtLaunch,
     setTheme,
     setUI,
     defaultLibraryViewMode,
