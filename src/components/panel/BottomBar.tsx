@@ -1,5 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
-import { Star, Copy, ClipboardPaste, Check, Settings, Filter, PanelLeft, PanelBottom, PanelRight } from 'lucide-react';
+import {
+  Star,
+  Copy,
+  ClipboardPaste,
+  Check,
+  Settings,
+  Settings2,
+  Filter,
+  PanelLeft,
+  PanelBottom,
+  PanelRight,
+} from 'lucide-react';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useShallow } from 'zustand/react/shallow';
@@ -177,6 +188,7 @@ export default function BottomBar({
       setUI: state.setUI,
     })),
   );
+  const hasRoots = useLibraryStore((state) => state.rootPaths.length > 0);
 
   const isLeftOpen = uiVisibility.leftPanel;
   const isRightOpen = uiVisibility.rightPanel;
@@ -184,6 +196,7 @@ export default function BottomBar({
   const showLeftPanelToggle = layoutMode === 'full';
   const showRightPanelToggle = layoutMode === 'full' || layoutMode === 'wide';
   const showBottomPanelToggle = layoutMode !== 'compact';
+  const showSettingsButton = layoutMode !== 'compact' && hasRoots;
 
   const toggleLeft = () =>
     setUI((s) => {
@@ -475,7 +488,7 @@ export default function BottomBar({
               onClick={onOpenCopyPasteSettings}
               data-tooltip={t('ui.bottomBar.tooltips.copyPasteSettings')}
             >
-              <Settings size={18} />
+              <Settings2 size={18} />
             </button>
           </div>
 
@@ -743,6 +756,14 @@ export default function BottomBar({
                   />
                 )}
               </>
+            )}
+
+            {showSettingsButton && (
+              <PanelToggleButton
+                onClick={() => setUI({ isSettingsOpen: true })}
+                Icon={Settings}
+                tooltip={t('settings.title')}
+              />
             )}
           </div>
         </div>
