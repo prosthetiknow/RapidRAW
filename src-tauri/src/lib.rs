@@ -2719,6 +2719,11 @@ pub fn run() {
 				    }
 				}
                 tauri::RunEvent::ExitRequested { api, code, .. } => {
+                    if code == Some(tauri::RESTART_EXIT_CODE) {
+                        #[cfg(any(target_os = "windows", target_os = "macos", target_os = "linux"))]
+                        tauri_plugin_single_instance::destroy(app_handle);
+                        app_handle.restart();
+                    }
                     api.prevent_exit();
                     let code = resolve_exit_code(code, process_exit_code());
 
